@@ -21,13 +21,12 @@
         <p><label for="age">Изменить возраст:</label></p>
         <p><input type="number" th:field="*{age}" id="age" value="age"></p>
 
-
-        <ul>
-            <li th:each="role : ${rolelist}">
-                <input type="checkbox" name="roles" th:field="*{roles}" th:value="${role}"/>
-<!--                       th:text="${role.getName()}" />-->
-            </li>
-        </ul>
+        <tr>
+            <td>
+                <input type="checkbox" name="user" value="1">USER<Br>
+                <input type="checkbox" name="admin" value="2">ADMIN<Br>
+            </td>
+        </tr>
         <p>
             <input type="submit" value="Редактировать">
         </p>

@@ -4,11 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import web.repository.RoleDAO;
 import web.models.Role;
 import web.models.User;
 import web.service.UserService;
-import java.util.HashSet;
+import javax.servlet.http.HttpServletRequest;
 import java.util.Set;
 
 @Controller
@@ -16,12 +15,11 @@ import java.util.Set;
 public class AdminController {
 
     private final UserService userService;
-    private final RoleDAO roleDAO;
 
     @Autowired
-    public AdminController(UserService userService, RoleDAO roleDAO) {
+    public AdminController(UserService userService) {
         this.userService = userService;
-        this.roleDAO = roleDAO;
+
     }
 
     @GetMapping
@@ -43,13 +41,6 @@ public class AdminController {
 
     @GetMapping(value = "/edit/{id}")
     public String editPage(@PathVariable("id") Long id, Model model) {
-
-        HashSet<Role> Setroles = new HashSet<>();
-        Role role_admin = roleDAO.createRoleIfNotFound("ADMIN", 1L);
-        Role role_user = roleDAO.createRoleIfNotFound("USER", 2L);
-        Setroles.add(role_admin);
-        Setroles.add(role_user);
-        model.addAttribute("rolelist", Setroles);
         model.addAttribute("user", userService.getById(id));
         return "editUser";
 
@@ -57,41 +48,20 @@ public class AdminController {
 
     @PostMapping(value = "/edit")
     public String editUser(
-            @RequestParam("id") Long id,
-            @RequestParam("name") String name,
-            @RequestParam("password") String password,
-            @RequestParam("lastname") String lastname,
-            @RequestParam("age") byte age,
-            @RequestParam("roles") String[] roles
-    ) {
-        User user = userService.getById(id);
-        user.setName(name);
-        user.setLastname(lastname);
-        user.setAge(age);
-
-        if (!password.isEmpty()) {
-            user.setPassword(password);
+            @ModelAttribute("user") User user, HttpServletRequest request) {
+        Set<Role> roles = user.getRoles();
+        String RoleUser = request.getParameter("user");
+        String RoleAdmin = request.getParameter("admin");
+        if (RoleUser != null) {
+            roles.add(Role.USER);
         }
-
-        Set<Role> Setroles = new HashSet<>();
-
-        for (String role : roles) {
-            if (role.equals("ADMIN")) {
-                Role role_admin = roleDAO.createRoleIfNotFound("ADMIN", 1L);
-                Setroles.add(role_admin);
-            }
-            if (role.equals("USER")) {
-                Role role_user = roleDAO.createRoleIfNotFound("USER", 2L);
-                Setroles.add(role_user);
-            }
+        if (RoleAdmin != null) {
+            roles.add(Role.ADMIN);
         }
-
-        user.setRoles(Setroles);
+        user.setRoles(roles);
         userService.save(user);
         return "redirect:/admin";
     }
-
-
     @GetMapping(value = "/delete/{id}")
     public String deleteUser(@ModelAttribute("user") User user) {
         userService.delete(user);
