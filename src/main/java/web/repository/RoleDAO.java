@@ -1,6 +1,6 @@
-package web.dao;
+package web.repository;
 
-import web.model.Role;
+import web.models.Role;
 
 
 public interface RoleDAO {

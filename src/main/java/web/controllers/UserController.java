@@ -1,13 +1,11 @@
-package web.controller;
+package web.controllers;
 
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import web.model.User;
+import web.models.User;
 import org.springframework.stereotype.Controller;
 import web.service.UserService;
-
-import java.security.Principal;
 
 @Controller
 @RequestMapping("/")

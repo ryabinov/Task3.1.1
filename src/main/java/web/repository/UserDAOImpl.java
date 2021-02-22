@@ -1,8 +1,8 @@
-package web.dao;
+package web.repository;
 
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-import web.model.User;
+import web.models.User;
 import javax.persistence.*;
 import java.util.List;
 

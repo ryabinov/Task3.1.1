@@ -1,11 +1,11 @@
-package web.controller;
+package web.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import web.dao.RoleDAO;
-import web.model.Role;
-import web.model.User;
+import web.repository.RoleDAO;
+import web.models.Role;
+import web.models.User;
 import web.service.UserService;
 import java.util.HashSet;
 import java.util.Set;

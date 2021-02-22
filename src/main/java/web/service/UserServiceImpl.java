@@ -3,9 +3,9 @@ package web.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import web.dao.UserDAO;
-import web.dao.RoleDAO;
-import web.model.User;
+import web.repository.UserDAO;
+import web.repository.RoleDAO;
+import web.models.User;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
