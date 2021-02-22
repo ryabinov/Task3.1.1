@@ -24,8 +24,8 @@
 
         <ul>
             <li th:each="role : ${rolelist}">
-                <input type="checkbox" name="roles" th:field="*{roles}" th:value="${role}"
-                       th:text="${role.getName()}" />
+                <input type="checkbox" name="roles" th:field="*{roles}" th:value="${role}"/>
+<!--                       th:text="${role.getName()}" />-->
             </li>
         </ul>
         <p>
