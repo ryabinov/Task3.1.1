@@ -5,6 +5,6 @@ import web.models.User;
 
 import java.util.Optional;
 
-public interface UserRepository extends JpaRepository<User,Long> {
+public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findByname(String name);
 }

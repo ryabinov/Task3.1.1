@@ -2,6 +2,7 @@ package web.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import web.models.User;
@@ -13,6 +14,7 @@ import web.service.UserService;
 public class UserController {
 
     private final UserService userService;
+
     @Autowired
     public UserController(UserService userService) {
         this.userService = userService;
@@ -25,6 +27,12 @@ public class UserController {
         modelAndView.setViewName("infoUser");
         modelAndView.addObject("user", user);
         return modelAndView;
+
+    }
+    @GetMapping(value = "/user/{id}")
+    public String showUserById(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("user", userService.getById(id));
+        return "infoUser";
 
     }
 
