@@ -49,8 +49,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 //страницы аутентификаци доступна всем
                 .antMatchers("/login", "/hello").anonymous()
                 // защищенные URL
-                .antMatchers("/admin/**").access("hasAuthority('ROLE_ADMIN')")
-                .antMatchers("/user/**").access("hasAuthority('ROLE_USER')")
+//                .antMatchers("/admin/**").hasAnyAuthority("ADMIN")
+//                .antMatchers("/user/**").hasAnyAuthority("USER","ADMIN")
+                .antMatchers("/user/**").hasAuthority("USER")
+                .antMatchers("/admin/**").hasAuthority("ADMIN")
+
                 .anyRequest().authenticated();
     }
 
@@ -59,8 +62,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-//    @Bean
-//    public static NoOpPasswordEncoder passwordEncoder() {
-//        return (NoOpPasswordEncoder) NoOpPasswordEncoder.getInstance();
-//    }
+
 }

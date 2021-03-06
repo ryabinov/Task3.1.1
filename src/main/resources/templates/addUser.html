@@ -1,114 +1,114 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<html lang="en">
-<head>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <meta charset="UTF-8">
-    <title>Пользователи</title>
-</head>
-<body>
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-11" style="background-color : rgba(9,9,21,0.85)">
+<!--<!DOCTYPE html>-->
+<!--<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"-->
+<!--          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Пользователи</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<div class="container-fluid">-->
+<!--    <div class="row">-->
+<!--        <div class="col-sm-11" style="background-color : rgba(9,9,21,0.85)">-->
 
-            <tbody>
+<!--            <tbody>-->
 
-            <b>
-                <div class="text-white">
-                    <!--                    <td th:text="${user1.name}"></td>-->
-                    <!--                    с ролью:-->
-                    <!--                    <td th:text="${user1.getRoles()}"></td>-->
-                    Тут творится какая то дичь
-                </div>
-            </b>
-            </tbody>
+<!--            <b>-->
+<!--                <div class="text-white">-->
+<!--                    &lt;!&ndash;                    <td th:text="${user1.name}"></td>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                    с ролью:&ndash;&gt;-->
+<!--                    &lt;!&ndash;                    <td th:text="${user1.getRoles()}"></td>&ndash;&gt;-->
+<!--                    Тут творится какая то дичь-->
+<!--                </div>-->
+<!--            </b>-->
+<!--            </tbody>-->
 
-        </div>
-        <div class="col-sm-1" style="background-color : rgba(9,9,21,0.85)">
-            <ul class="navbar-nav">
-                <a href="/logout" class="nav-link" style="color : darkgrey ">Logout</a>
-            </ul>
-        </div>
-    </div>
-</div>
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-2">
-            <div class="list-group">
-                <tr th:each="user : ${usersList}">
-                    <a th:href="@{'/user/'+${user.id}}" class="list-group-item list-group-item">
-                        <td th:text="${user.name}"></td>
-                    </a>
-            </div>
-        </div>
-        <div class="col-sm-10" style="background-color: rgba(209,214,209,0.13)">
-            <br>
-            <h2>
-                Admin panel
-            </h2>
-<!--            <ul class="nav nav-tabs">-->
+<!--        </div>-->
+<!--        <div class="col-sm-1" style="background-color : rgba(9,9,21,0.85)">-->
+<!--            <ul class="navbar-nav">-->
+<!--                <a href="/logout" class="nav-link" style="color : darkgrey ">Logout</a>-->
+<!--            </ul>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<!--<div class="container-fluid">-->
+<!--    <div class="row">-->
+<!--        <div class="col-sm-2">-->
+<!--            <div class="list-group">-->
+<!--                <tr th:each="user : ${usersList}">-->
+<!--                    <a th:href="@{'/user/'+${user.id}}" class="list-group-item list-group-item">-->
+<!--                        <td th:text="${user.name}"></td>-->
+<!--                    </a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="col-sm-10" style="background-color: rgba(209,214,209,0.13)">-->
+<!--            <br>-->
+<!--            <h2>-->
+<!--                Admin panel-->
+<!--            </h2>-->
+<!--&lt;!&ndash;            <ul class="nav nav-tabs">&ndash;&gt;-->
+<!--&lt;!&ndash;                <li class="nav-item">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <a class="nav-link active" href="/admin" aria-selected="true">Таблица юзеров</a>&ndash;&gt;-->
+<!--&lt;!&ndash;                </li>&ndash;&gt;-->
+<!--&lt;!&ndash;                <li class="nav-item">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <a class="nav-link" th:href="@{'/admin/add'}" aria-selected="false">Добавить нового юзера</a>&ndash;&gt;-->
+<!--&lt;!&ndash;            </ul>&ndash;&gt;-->
+<!--            <ul class="nav nav-tabs" id="myTab" role="tablist">-->
 <!--                <li class="nav-item">-->
-<!--                    <a class="nav-link active" href="/admin" aria-selected="true">Таблица юзеров</a>-->
+<!--                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="/admin" role="tab"-->
+<!--                       aria-controls="home" aria-selected="true">Таблица юзеров</a>-->
 <!--                </li>-->
 <!--                <li class="nav-item">-->
-<!--                    <a class="nav-link" th:href="@{'/admin/add'}" aria-selected="false">Добавить нового юзера</a>-->
+<!--                    <a class="nav-link" id="profile-tab" data-toggle="tab" th:href="@{'/admin/add'}" role="tab"-->
+<!--                       aria-controls="profile" aria-selected="false">Добавить нового пользователя</a>-->
+<!--                </li>-->
 <!--            </ul>-->
-            <ul class="nav nav-tabs" id="myTab" role="tablist">
-                <li class="nav-item">
-                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="/admin" role="tab"
-                       aria-controls="home" aria-selected="true">Таблица юзеров</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="profile-tab" data-toggle="tab" th:href="@{'/admin/add'}" role="tab"
-                       aria-controls="profile" aria-selected="false">Добавить нового пользователя</a>
-                </li>
-            </ul>
-            <div class="card">
-                <div class="card-body">
-                    <p class="h5">Добавить нового пользователя</p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-body">
-                    <div class="mx-auto" style="width: 200px;">
-                        <form th:action="@{/admin/add}" method="post">
+<!--            <div class="card">-->
+<!--                <div class="card-body">-->
+<!--                    <p class="h5">Добавить нового пользователя</p>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="card">-->
+<!--                <div class="card-body">-->
+<!--                    <div class="mx-auto" style="width: 200px;">-->
+<!--                        <form th:action="@{/admin/add}" method="post">-->
 
-                            <label for="name"><strong>Введите имя:</strong></label>
-                            <p><input type="text" id="name" name="name" required></p>
+<!--                            <label for="name"><strong>Введите имя:</strong></label>-->
+<!--                            <p><input type="text" id="name" name="name" required></p>-->
 
-                            <label for="password"><strong>Введите пароль:</strong></label>
-                            <p><input type="password" id="password" name="password"></p>
+<!--                            <label for="password"><strong>Введите пароль:</strong></label>-->
+<!--                            <p><input type="password" id="password" name="password"></p>-->
 
-                            <label for="lastname"><strong>Введите фамилию:</strong></label>
-                            <p><input type="text" id="lastname" name="lastname"></p>
+<!--                            <label for="lastname"><strong>Введите фамилию:</strong></label>-->
+<!--                            <p><input type="text" id="lastname" name="lastname"></p>-->
 
-                            <label for="age"><strong>Введите возраст:</strong></label>
-                            <p><input type="number" id="age" name="age"></p>
+<!--                            <label for="age"><strong>Введите возраст:</strong></label>-->
+<!--                            <p><input type="number" id="age" name="age"></p>-->
 
-                            <tr>
-                                <td>
-                                    <input type="checkbox" name="user" value="1">USER<Br>
-                                    <input type="checkbox" name="admin" value="2">ADMIN<Br>
-                                </td>
-                            </tr>
-                            <p>
-                           <div class ="text center">
-                                <button type="submit" class="btn btn-success btn-lg">Добавить</button>
-                        </div>
-                            </p>
+<!--                            <tr>-->
+<!--                                <td>-->
+<!--                                    <input type="checkbox" name="user" value="1">USER<Br>-->
+<!--                                    <input type="checkbox" name="admin" value="2">ADMIN<Br>-->
+<!--                                </td>-->
+<!--                            </tr>-->
+<!--                            <p>-->
+<!--                           <div class ="text center">-->
+<!--                                <button type="submit" class="btn btn-success btn-lg">Добавить</button>-->
+<!--                        </div>-->
+<!--                            </p>-->
 
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<!--                        </form>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-</body>
-</html>
+<!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>-->
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>-->
+<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>-->
+<!--</body>-->
+<!--</html>-->
 
