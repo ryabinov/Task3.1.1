@@ -1,7 +1,7 @@
 server:
   servlet:
     context-path: /
-  port: 8080
+  port: 8079
   
 spring:
   jpa:
@@ -13,6 +13,6 @@ spring:
           use_jdbc_metadata_defaults: false
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/db_test2?verifyServerCertificate=false&useSSL=false&requireSSL=false&useLegacyDatetimeCode=false&amp&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://localhost:3306/db_test4?verifyServerCertificate=false&useSSL=false&requireSSL=false&useLegacyDatetimeCode=false&amp&serverTimezone=UTC&allowPublicKeyRetrieval=true
     username: root
     password: Rjhjdf89njxrf!3

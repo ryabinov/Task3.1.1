@@ -12,17 +12,17 @@ import java.io.IOException;
 import java.util.Set;
 
 @Component
-public class LoginSuccessHandler implements AuthenticationSuccessHandler {
+public class SuccessUserHandler implements AuthenticationSuccessHandler {
 
     @Override
-    public void onAuthenticationSuccess(HttpServletRequest httpServletRequest,
-                                        HttpServletResponse httpServletResponse,
+    public void onAuthenticationSuccess(HttpServletRequest request,
+                                        HttpServletResponse response,
                                         Authentication authentication) throws IOException, ServletException {
         Set<String> roles = AuthorityUtils.authorityListToSet(authentication.getAuthorities());
         if (roles.contains("ADMIN")) {
-            httpServletResponse.sendRedirect("/admin");
+            response.sendRedirect("/");
         } else {
-            httpServletResponse.sendRedirect("/user");
+            response.sendRedirect("/user");
         }
     }
 }

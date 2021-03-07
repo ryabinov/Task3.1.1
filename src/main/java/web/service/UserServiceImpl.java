@@ -1,57 +1,68 @@
 package web.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Repository;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import web.models.User;
+import org.springframework.transaction.annotation.Transactional;
+import web.model.User;
 import web.repository.UserRepository;
 
-import javax.transaction.Transactional;
-import java.util.List;
+import java.util.Optional;
 
 @Service
-@Repository
-public class UserServiceImpl implements UserDetailsService, UserService {
+@Transactional
+public class UserServiceImpl implements UserService {
+    BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    private final UserRepository userRepository;
 
-    @Autowired
-    PasswordEncoder bCryptPasswordEncoder;
-
-    private UserRepository userRepository;
-
-    @Autowired
-    public void setUserRepository(UserRepository userRepository) {
+    public UserServiceImpl (UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
-    public List<User> allUsers() {
-        return userRepository.findAll();
-    }
-
-    @Transactional
-    public void save(User user) {
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+    @Override
+    public void createUser(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
     }
 
-    @Transactional
-    public void update(User user, Long id) {
-        userRepository.saveAndFlush(user);
-    }
-
-    @Transactional
-    public void delete(User user) {
-        userRepository.delete(user);
-    }
-
-    public User getById(Long id) {
-        return userRepository.findById(id).orElse(null);
+    @Override
+    public void updateUser(User user) {
+        if (user.getPassword().isEmpty()) {
+            user.setPassword(userRepository.findByEmail(user.getEmail()).getPassword());
+        } else {
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+        }
+        userRepository.save(user);
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) {
-        return userRepository.findByname(username).orElse(null);
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        return userRepository.findByEmail(email);
+    }
+
+    @Override
+    public User getUserByEmail(String email){
+        return userRepository.findByEmail(email);
+    }
+
+    @Override
+    public Iterable<User> getAllUsers() {
+        return userRepository.findAll();
+    }
+
+    @Override
+    public void deleteUser(User user) {
+        userRepository.delete(user);
+    }
+
+    @Override
+    public Optional<User> getUserById(Long id) {
+        return userRepository.findById(id);
+    }
+
+    @Override
+    public void deleteUserById(Long id) {
+        userRepository.deleteById(id);
     }
 }

@@ -2,3 +2,12 @@
 2. Переписать вывод (заполнение) таблицы,
  модальных окон и т.д. на JS c помощью Fetch API, допускается использование JQuery.
 3. При любых изменениях данных страница приложения не должна перезагружаться!
+
+САЙТЫ В ПОМОЩ:
+https://bootstrap-4.ru/docs/4.0/components/alerts/
+https://developer.mozilla.org/ru/docs/Web/API/Document/createElement
+https://learn.javascript.ru/fetch
+https://www.tutorialspoint.com/spring_boot/spring_boot_rest_template.htm
+
+https://www.youtube.com/watch?v=z59GYW4aI2U
+https://www.youtube.com/watch?v=yRnSUDx3Y8k&t=1s
